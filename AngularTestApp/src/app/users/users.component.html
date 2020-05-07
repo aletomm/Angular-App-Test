@@ -1,0 +1,21 @@
+<table>
+    <caption>Users</caption>
+    <thead>
+        <th>Nome</th>
+        <th>Cognome</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Telefono</th>
+        <th>Provincia</th>
+    </thead>
+    <tbody >
+        <tr *ngFor="let user of users">
+            <td>{{ user.name.first }}</td>
+            <td>{{ user.name.last }}</td>
+            <td>{{ user.login.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.phone }}</td>
+            <td>{{ user.location.state }}</td>
+        </tr>
+    </tbody>
+</table>
