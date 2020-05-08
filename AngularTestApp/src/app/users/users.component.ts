@@ -1,6 +1,6 @@
-import { IUser } from './../interfaces/iuser';
+import { User } from './../classes/user';
 import { UserService } from '../services/user.service';
- 
+import * as $ from 'jquery';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
@@ -9,9 +9,9 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
     styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-    @Input() users: IUser[] = [];
+    @Input() users: User[] = [];
 
-    @Output() updateUser = new EventEmitter<IUser>();
+    @Output() updateUser = new EventEmitter<User>();
     
     constructor(private userService: UserService) { }
 
@@ -19,11 +19,12 @@ export class UsersComponent implements OnInit {
         
     }
 
-    onDeleteUser(user: IUser) {
+    onDeleteUser(user: User) {
         this.userService.deleteUser(user);
     }
 
-    onSelectUser(user: IUser) {
-        this.updateUser.emit(user);
+    onSelectUser(user: User) {
+        const usrCopy = $.extend(true, {}, user);
+        this.updateUser.emit(usrCopy);
     }
 }

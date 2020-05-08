@@ -1,15 +1,20 @@
 <div class="container-fluid">
-<h1> {{title}} </h1>
-
+    <div class="jumbotron mt-3">
+        <h1 class="display-4">{{ title }}</h1>
+        <p class="lead">Questa è un'applicazione di gestione utenti sviluppata in Angular 9.</p>
+    </div>
     <div class="row">
-        <div class="col-md-8">
-            <div class="users table-responsive">
+        <button (click)="newUser()" class="btn btn-primary btn-sm float-left m-3">Crea utente</button>
+    </div>
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="users table-responsive-xl">
                 <app-users [users] = 'users' (updateUser) = "updateUser($event)"></app-users>
             </div>
         </div>
-        <div class="col-md-4">
-            <div *ngIf="userSelected" class="usersDetail">
-                <app-user-detail></app-user-detail>
+        <div class="col-lg-3">
+            <div *ngIf="showForm" class="usersDetail">
+                <app-user-detail [user]="userSelected" (hideForm)="hideForm($event)" ></app-user-detail>
             </div>
         </div> 
     </div>

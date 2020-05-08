@@ -1,6 +1,6 @@
 import { UserService } from './services/user.service';
-import { IUser } from './interfaces/iuser';
 import { Component, OnInit } from '@angular/core';
+import { User } from './classes/user';
 
 @Component({
   selector: 'app-root',
@@ -9,22 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'User Management System';
-  userSelected: IUser = null;
-  
-  users: IUser[] = [];
+  userSelected: User = new User();
+  showForm: boolean = false;
+  users: User[] = [];
 
   constructor(private userService: UserService) {
 
   }
 
-  updateUser(user: IUser) {
+  hideForm(flag: boolean) {
+    this.showForm = !flag;
+  }
+
+  updateUser(user: User) {
     this.userSelected = user;
+    this.showForm = true;
+  }
+
+  newUser() {
+    this.userSelected = new User();
+    this.showForm = true;
   }
 
   ngOnInit() {
-    this.userService.getUsers(15)
-        .then((res) => {
-            this.users = res;
-        });
+    this.users = this.userService.getUsers(15);
   }
 }
