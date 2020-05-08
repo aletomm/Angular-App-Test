@@ -1,1 +1,18 @@
-<p>user works!</p>
+<td>{{ user.name.first }}</td>
+<td>{{ user.name.last }}</td>
+<td>{{ user.email }}</td>
+<td>{{ user.location.state }}</td>
+<td>
+    <div class="row">
+        <div class="col-sm-6">
+            <button class="delete btn btn-danger btn-sm" (click)="deleteUser()" >
+                <fa-icon [icon]="faTrashAlt"></fa-icon>
+            </button> 
+        </div>
+        <div class="col-sm-6">
+            <button class="modify btn btn-warning btn-sm" (click)="updateUser()" >
+                <fa-icon [icon]="faUserEdit"></fa-icon>
+            </button>
+        </div>      
+    </div>
+</td>  
