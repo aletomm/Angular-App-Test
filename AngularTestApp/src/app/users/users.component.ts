@@ -1,6 +1,7 @@
-import { UserService } from './user.service';
+import { IUser } from './../interfaces/iuser';
+import { UserService } from '../services/user.service';
  
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
     selector: 'app-users',
@@ -8,15 +9,21 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-    users = [];
+    @Input() users: IUser[] = [];
+
+    @Output() updateUser = new EventEmitter<IUser>();
     
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService) { }
 
     ngOnInit() {
-        this.userService.getUsers(15)
-        .then((res) => {
-            this.users = res;
-        });
+        
     }
 
+    onDeleteUser(user: IUser) {
+        this.userService.deleteUser(user);
+    }
+
+    onSelectUser(user: IUser) {
+        this.updateUser.emit(user);
+    }
 }
