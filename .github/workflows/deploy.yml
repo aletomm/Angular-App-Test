@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Build and Deploy
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -21,14 +21,13 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-
-    # Runs a single command using the runners shell
-    - uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.2.0
-        with:
+    - name: All things Angular
+      uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.2.0
+      with:
           # Github access token token used to deploy on gh_pages. You can find it on Github.
-          github_access_token: 
+        github_access_token: ${{ secrets.DEPLOY }}
           # The directory of the angular project, in which all the commands will run
-          angular_project_dir: './AngularTestApp'
+        angular_project_dir: './AngularTestApp'
           # base href for the app
-          base_href: 'Angular-App-Test'
+        base_href: 'https://aletomm.github.io/Angular-App-Test/'
           # The folder in which `ng build` provides its output. This is the folder which will be deployed to the `deploy_branch`.
