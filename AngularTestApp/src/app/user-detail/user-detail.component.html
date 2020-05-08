@@ -1,29 +1,25 @@
-<form>
+<form #f="ngForm">
+    <div class="form-group">
+        <input type="hidden" name="id" [(ngModel)]="user.id" />
+    </div>
     <div class="form-group">
         <label for="fistname">Nome: </label>
-        <input class="form-control" type="text" id="fistname" name="fistname" />
+        <input [(ngModel)]="user.name.first" class="form-control" type="text" id="fistname" name="fistname" />
     </div>
     <div class="form-group">
         <label for="lastname" >Cognome: </label>
-        <input  class="form-control"  type="text" id="lastname" name="lastname" />
-    </div>
-    <div class="form-group">
-        <label for="username">Username: </label>
-        <input  class="form-control" type="text" id="username" name="username" />
+        <input [(ngModel)]="user.name.last" class="form-control"  type="text" id="lastname" name="lastname" />
     </div>
     <div class="form-group">
         <label for="email">Email: </label>
-        <input  class="form-control" type="email" id="email" name="email" />
-    </div>
-    <div class="form-group">
-        <label for="phone">Telefono: </label>
-        <input  class="form-control" type="text" id="phone" name="phone" />
+        <input [(ngModel)]="user.email" class="form-control" type="email" id="email" name="email" />
     </div>
     <div class="form-group">
         <label for="state">Provincia: </label>
-        <input  class="form-control" type="text" id="state" name="state" />
+        <input [(ngModel)]="user.location.state" class="form-control" type="text" id="state" name="state" />
     </div>
     <div class="form-group form-footer">
-        <button class="btn-save">Salva</button>
+        <button (click)="saveUser()"  class=" btn btn-success btn-save">Salva</button>
+        <button (click)="resetForm(f.form)"  class="ml-3 btn btn-warning">Reset</button>
     </div>
 </form>

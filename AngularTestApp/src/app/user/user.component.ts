@@ -1,4 +1,4 @@
-import { IUser } from './../interfaces/iuser';
+import { User } from './../classes/user';
 import { UserService } from '../services/user.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { faUserEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
@@ -11,7 +11,7 @@ export class UserComponent implements OnInit {
   faUserEdit = faUserEdit;
   faTrashAlt = faTrashAlt;
 
-  @Input('user-data') user: IUser;
+  @Input('user-data') user: User;
   @Output('onDeleteUser') userDeleted = new EventEmitter();
   @Output('onSelectUser') userSelected = new EventEmitter();
 
