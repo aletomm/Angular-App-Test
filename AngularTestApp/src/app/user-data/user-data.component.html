@@ -1,0 +1,50 @@
+<h2 class="mb-5">{{title}}</h2>
+<div class="row">
+    <button class=" ml-3 mb-3 btn btn-sm btn-danger" routerLink='/users'>Torna indietro</button>
+</div>
+<div class="table-responsive">
+    <table class="table table-dark table-striped">
+      <tbody>
+          <tr>
+            <th>Nome:</th>
+            <td>
+                <span>{{user.name.title+' '}}</span>
+                <span>{{user.name.first+' '}}</span>
+                <span>{{user.name.last}}</span>
+            </td>
+          </tr>
+          <tr>
+            <th>Indirizzo:</th>
+            <td>
+                <span>{{'Via '+user.location.street.name+' '}}</span>
+                <span>{{user.location.street.number+', '}}</span>
+            </td>
+        </tr>
+
+        <tr>
+            <th>Città:</th>
+            <td>{{user.location.city}}</td>
+        </tr>
+        <tr>
+            <th>Provincia:</th>
+            <td>{{user.location.state}}</td>
+        </tr>
+        <tr>
+            <th>Stato:</th>
+            <td>{{user.location.country}}</td>
+        </tr>
+        <tr>
+            <th>Email:</th>
+            <td>{{user.email}}</td>
+        </tr>
+        <tr>
+            <th>Username:</th>
+            <td>{{user.login.username}}</td>
+        </tr>
+        <tr>
+            <th>Telefono:</th>
+            <td>{{user.phone}}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>

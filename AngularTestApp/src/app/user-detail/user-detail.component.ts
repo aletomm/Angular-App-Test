@@ -1,6 +1,8 @@
 import { UserService } from './../services/user.service';
 import { User } from './../classes/user';
+import * as $ from 'jquery';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-detail',
@@ -8,11 +10,36 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./user-detail.component.css']
 })
 export class UserDetailComponent implements OnInit {
-  @Input() user: User;
+  private _user: User;
+  private userCopy: User;
+
+  set user(user: User){
+    this._user = user;
+    this.userCopy = $.extend(true, {}, user);
+  }
+
+  get user(): User{
+    return this._user;
+  } 
+
   @Output() hideForm = new EventEmitter();
-  constructor(private userService: UserService) { }
+
+  constructor(private userService: UserService,
+    private route: ActivatedRoute,
+    private router: Router) {
+   
+   }
 
   ngOnInit(): void {
+    this.user = new User();
+    this.route.params.subscribe(
+      (params) => {
+        if(!params.id) {
+          return;
+        }
+        this.user = this.userService.getUser(+params.id);
+      }
+    )
   }
 
   saveUser() {
@@ -22,14 +49,14 @@ export class UserDetailComponent implements OnInit {
     } else if(this.user.id === 0) {
       this.userService.createUser(this.user);
     }
-    this.hideForm.emit(true);
+    this.router.navigate(['users']);
   }
 
   resetForm(form) {
     if(this.user.id === 0) {
       this.user = new User();
     } else {
-      //..................................
+      this.user = this.userCopy;
     }
   }
 

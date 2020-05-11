@@ -4,12 +4,17 @@
 <td>{{ user.location.state }}</td>
 <td>
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-3">
+            <button class="btn btn-primary btn-sm" (click)="showUser()">
+                <fa-icon [icon]="faInfoCircle"></fa-icon>
+            </button>
+        </div>
+        <div class="col-sm-3">
             <button class="delete btn btn-danger btn-sm" (click)="deleteUser()" >
                 <fa-icon [icon]="faTrashAlt"></fa-icon>
             </button> 
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-3">
             <button class="modify btn btn-warning btn-sm" (click)="updateUser()" >
                 <fa-icon [icon]="faUserEdit"></fa-icon>
             </button>
