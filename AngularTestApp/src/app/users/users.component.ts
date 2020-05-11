@@ -9,14 +9,14 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
     styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-    @Input() users: User[] = [];
+    users: User[] = [];
 
     @Output() updateUser = new EventEmitter<User>();
     
     constructor(private userService: UserService) { }
 
     ngOnInit() {
-        
+        this.users = this.userService.getUsers(15);
     }
 
     onDeleteUser(user: User) {

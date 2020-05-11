@@ -382,6 +382,14 @@ export class UserService {
         return this.users;
     }
 
+    getUser(id: number): User {
+        // return this.users.find(user=> user.id === id)
+        const userSelected: User[] = this.users.filter((user) => {
+            return user.id === id;
+        });
+        return userSelected[0];
+    }
+
     deleteUser(user: User) {
         let index = this.users.indexOf(user) 
         if(index >= 0) {

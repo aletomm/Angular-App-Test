@@ -9,18 +9,14 @@ import { User } from './classes/user';
 })
 export class AppComponent implements OnInit {
   title = 'User Management System';
+  date: Date = new Date();
   userSelected: User = new User();
   showForm: boolean = false;
-  users: User[] = [];
 
   constructor(private userService: UserService) {
 
   }
-
-  hideForm(flag: boolean) {
-    this.showForm = !flag;
-  }
-
+/*
   updateUser(user: User) {
     this.userSelected = user;
     this.showForm = true;
@@ -30,8 +26,8 @@ export class AppComponent implements OnInit {
     this.userSelected = new User();
     this.showForm = true;
   }
+  */
 
   ngOnInit() {
-    this.users = this.userService.getUsers(15);
   }
 }

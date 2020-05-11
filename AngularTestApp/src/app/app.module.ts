@@ -8,13 +8,23 @@ import { UserComponent } from './user/user.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
+import { UcfirstPipe } from './pipes/ucfirst.pipe';
+import { registerLocaleData } from '@angular/common';
+import localeIt from '@angular/common/locales/it';
+import { NavComponent } from './nav/nav/nav.component';
+import { UserDataComponent } from './user-data/user-data.component';
+
+registerLocaleData(localeIt);
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
     UserComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    UcfirstPipe,
+    NavComponent,
+    UserDataComponent
   ],
   imports: [
     BrowserModule,
