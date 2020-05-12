@@ -4,22 +4,53 @@
     </div>
     <div class="form-group">
         <label for="fistname">Nome: </label>
-        <input [(ngModel)]="user.name.first" class="form-control" type="text" id="fistname" name="fistname" />
+        <input #firstName="ngModel" minlength="3" pattern="[a-zA-Z\s]{3,32}" required [(ngModel)]="user.name.first" class="form-control" type="text" id="fistname" name="fistname" />
+        
+        <div *ngIf="firstName.dirty && firstName.touched && firstName.invalid">
+            <div *ngIf="firstName.errors.required" class="alert-danger">
+                Il campo nome non può essere vuoto
+            </div>
+            <div *ngIf="firstName.errors.minlength" class="alert-danger">
+                La lunghezza minima deve essere di {{firstName.errors.minlength.requiredLength}} caratteri
+            </div>
+            <div *ngIf="firstName.errors.pattern" class="alert-danger">
+                Il nome deve seguire il pattern [a-zA-Z\s]
+            </div>
+        </div>
     </div>
     <div class="form-group">
         <label for="lastname" >Cognome: </label>
-        <input [(ngModel)]="user.name.last" class="form-control"  type="text" id="lastname" name="lastname" />
+        <input #lastName="ngModel" minlength="3" pattern="[a-zA-Z\s]{3,32}" required [(ngModel)]="user.name.last" class="form-control"  type="text" id="lastname" name="lastname" />
+        <div *ngIf="lastName.dirty && lastName.touched && lastName.invalid">
+            <div *ngIf="lastName.errors.required" class="alert-danger">
+                Il campo cognome non può essere vuoto
+            </div>
+            <div *ngIf="lastName.errors.minlength" class="alert-danger">
+                La lunghezza minima deve essere di {{lastName.errors.minlength.requiredLength}} caratteri
+            </div>
+            <div *ngIf="lastName.errors.pattern" class="alert-danger">
+                Il cognome deve seguire il pattern [a-zA-Z\s]
+            </div>
+        </div>
     </div>
     <div class="form-group">
         <label for="email">Email: </label>
-        <input [(ngModel)]="user.email" class="form-control" type="email" id="email" name="email" />
+        <input #emailInput="ngModel" required [(ngModel)]="user.email" class="form-control" type="email" id="email" name="email" />
+        
+        <div *ngIf="emailInput.dirty && emailInput.touched && emailInput.invalid">
+            <div *ngIf="emailInput.errors.required" class="alert-danger">
+                Il campo email non può essere vuoto
+            </div>
+            <p>{{emailInput.errors | json}}</p>
+        </div>
+
     </div>
     <div class="form-group">
         <label for="state">Provincia: </label>
-        <input [(ngModel)]="user.location.state" class="form-control" type="text" id="state" name="state" />
+        <input required [(ngModel)]="user.location.state" class="form-control" type="text" id="state" name="state" />
     </div>
     <div class="form-group form-footer">
-        <button (click)="saveUser()" class=" btn btn-success btn-save">Salva</button>
+        <button [disabled]="f.invalid" (click)="saveUser()" class=" btn btn-success btn-save">Salva</button>
         <button (click)="resetForm(f.form)"  class="ml-3 btn btn-warning">Reset</button>
     </div>
 </form>
