@@ -69,6 +69,8 @@ export class UserDetailComponent implements OnInit {
 
       this.userService.createUser(this.user);
     }
+    //Da rimuovere se uso l'observer
+    this.router.navigate(['users']);
   }
 
   resetForm(form) {
