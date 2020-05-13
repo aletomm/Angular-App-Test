@@ -12,6 +12,10 @@ import { NgForm } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   constructor(private authService : AuthService, private router: Router) {
+    // Da rimuovere se viene inserita la promise del metodo signIn
+    authService.userSignedIn.subscribe((user: User) => {
+      router.navigate(['']);
+    });
    }
 
   ngOnInit(): void { }
