@@ -12,11 +12,11 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 export class UsersComponent implements OnInit {
     private _users: User[] = []; 
     
-    @Input() get users {
+    @Input() get users(){
         return this._users;
     }
 
-    set user(val: User[]) {
+    set users(val: User[]) {
         if(val) {
             this.filteredUsers = this._users = val;
         }
@@ -57,15 +57,15 @@ export class UsersComponent implements OnInit {
 
     filter(data: string) {
         if (data) {
-            this.filteredCustomers = this.customers.filter((cust: ICustomer) => {
-                return cust.name.toLowerCase().indexOf(data.toLowerCase()) > -1 ||
-                       cust.city.toLowerCase().indexOf(data.toLowerCase()) > -1 ||
-                       cust.orderTotal.toString().indexOf(data) > -1;
+            this.filteredUsers = this.users.filter((user: User) => {
+                return user.name.first.toLowerCase().indexOf(data.toLowerCase()) > -1 ||
+                       user.name.last.toLowerCase().indexOf(data.toLowerCase()) > -1 ||
+                       user.location.state.toLowerCase().indexOf(data.toLowerCase()) > -1 ||
+                       user.email.toLowerCase().indexOf(data.toLowerCase()) > -1;
             });
         } else {
-            this.filteredCustomers = this.customers;
+            this.filteredUsers = this.users;
         }
-        this.calculateOrders();
     }
-    }
+    
 }
