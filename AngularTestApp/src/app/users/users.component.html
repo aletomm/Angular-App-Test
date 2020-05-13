@@ -1,15 +1,15 @@
+<app-filter-textbox (changed)="filter($event)"></app-filter-textbox>
 <table class="table table-striped table-sm table-dark">
     <caption>Users</caption>
     <thead class="thead-dark">
-        <th>Nome</th>
-        <th>Cognome</th>
-        <th>Email</th>
-        <th>Provincia</th>
+        <th (click)="sort('name.first')">Nome</th>
+        <th (click)="sort('name.last')">Cognome</th>
+        <th (click)="sort('email')">Email</th>
+        <th (click)="sort('location.state')">Provincia</th>
         <th>Actions</th>
     </thead>
     <tbody >
-        <tr app-user *ngFor="let user of users" [user-data]="user" (onDeleteUser)="onDeleteUser($event)" (onSelectUser)="onSelectUser($event)">
-            
+        <tr app-user *ngFor="let user of filteredUsers" [user-data]="user" (onDeleteUser)="onDeleteUser($event)" (onSelectUser)="onSelectUser($event)">
         </tr>
     </tbody>
 </table>
