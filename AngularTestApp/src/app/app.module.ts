@@ -16,6 +16,7 @@ import { UserDataComponent } from './user-data/user-data.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FilterTextboxComponent } from './filter-textbox/filter-textbox.component';
 
 
 registerLocaleData(localeIt);
@@ -30,7 +31,8 @@ registerLocaleData(localeIt);
     NavComponent,
     UserDataComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    FilterTextboxComponent
   ],
   imports: [
     BrowserModule,
