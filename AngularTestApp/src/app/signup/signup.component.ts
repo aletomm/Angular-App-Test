@@ -12,6 +12,10 @@ import { Component, OnInit } from '@angular/core';
 export class SignupComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) { 
+    // Da rimuovere se viene inserita la promise del matodo signUp
+    this.authService.userSignedUp.subscribe( (user: User) => {
+      router.navigate(['']);
+    });
   }
 
   ngOnInit(): void {
