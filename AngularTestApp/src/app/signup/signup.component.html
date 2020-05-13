@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-md-6 offset-md-5 ml-5">
+        <h1>Sign Up</h1>
+    
+        <form name="signUpForm" #f="ngForm" (ngSubmit)="signUp(f)">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input class="form-control" required type="email" email #email="ngModel" ngModel name="email" id = "password"/>
+                <div *ngIf="email.dirty && email.touched && email.invalid">
+                    <div *ngIf="email.errors.required" class="alert-danger">
+                        Il campo email non può essere vuoto
+                    </div>
+                    <div *ngIf="email.errors.email" class="alert-danger">
+                        La mail inserita deve essere valida
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control" required type="password" minlength="6" ngModel #password="ngModel" name="password" id = "password"/>
+                <div *ngIf="password.dirty && password.touched && password.invalid">
+                    <div *ngIf="password.errors.required" class="alert-danger">
+                        Il campo password non può essere vuoto
+                    </div>
+                    <div *ngIf="password.errors.minlength" class="alert-danger">
+                        La password deve contenere almeno 6 caratteri
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input class="form-control" required type="text" minlength="6" ngModel #username="ngModel" name="username" id = "username"/>
+                <div *ngIf="username.dirty && username.touched && username.invalid">
+                    <div *ngIf="username.errors.required" class="alert-danger">
+                        Il campo username non può essere vuoto
+                    </div>
+                    <div *ngIf="username.errors.minlength" class="alert-danger">
+                        Lo username deve contenere almeno 6 caratteri
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="f.invalid" class="btn btn-sm btn-success">Sign Up</button>
+            </div>
+        </form>
+    </div>
+</div>

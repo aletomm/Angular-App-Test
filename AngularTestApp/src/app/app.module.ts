@@ -13,6 +13,10 @@ import { registerLocaleData } from '@angular/common';
 import localeIt from '@angular/common/locales/it';
 import { NavComponent } from './nav/nav/nav.component';
 import { UserDataComponent } from './user-data/user-data.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 registerLocaleData(localeIt);
 
@@ -24,13 +28,16 @@ registerLocaleData(localeIt);
     UserDetailComponent,
     UcfirstPipe,
     NavComponent,
-    UserDataComponent
+    UserDataComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     UserService

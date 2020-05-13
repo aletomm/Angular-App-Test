@@ -16,10 +16,20 @@ export class UsersComponent implements OnInit {
     constructor(private userService: UserService) { }
 
     ngOnInit() {
+        //  this.userService.getUsers(15)
+        // .subscribe(res => this.users = res['data']);
         this.users = this.userService.getUsers(15);
     }
 
     onDeleteUser(user: User) {
+        /*
+            this.userService.deleteUser(user)
+                .subscribe((res) => {
+                    const index = this.users.indexof(user);
+                    this.users.splice(index, 1);
+                }
+            );
+        */
         this.userService.deleteUser(user);
     }
 
