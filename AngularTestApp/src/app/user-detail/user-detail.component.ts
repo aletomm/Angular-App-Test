@@ -37,6 +37,7 @@ export class UserDetailComponent implements OnInit {
         if(!params.get('id')) {
           return;
         }
+        //this.userService.getUser(+params.get('id')).subscribe(res => this.user = response['data']);
         this.user = this.userService.getUser(+params.get('id'));
       }
     )
@@ -45,11 +46,29 @@ export class UserDetailComponent implements OnInit {
   saveUser() {
     //checkUser(this.user);
     if(this.user.id > 0) {
+      //this.userService.updateUser.subscribe(res => { 
+      //  const user = res['data'] as User;
+      // if(res['success']) {
+      //  alert('User ' + User.name + ' modificato correttamente' ); 
+      // } else {
+      //  alert(response['message']); 
+      // }
+      // this.router.navigate(['users']);
+      //});
       this.userService.updateUser(this.user);
     } else if(this.user.id === 0) {
+      //this.userService.createUser.subscribe(res => { 
+      //  const user = res['data'] as User;
+      // if(res['success']) {
+      //  alert('User ' + User.name + ' creato correttamente' ); 
+      // } else {
+      //  alert(response['message']); 
+      // }
+      // this.router.navigate(['users']);
+      //});
+
       this.userService.createUser(this.user);
     }
-    this.router.navigate(['users']);
   }
 
   resetForm(form) {

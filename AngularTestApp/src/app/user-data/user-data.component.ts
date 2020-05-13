@@ -29,6 +29,7 @@ export class UserDataComponent implements OnInit {
       if(!params.get('id')) {
         return;
       }
+      //this.userService.getUser(+params.get('id')).subscribe(res => this.user = response['data']);
       this.user = this.userService.getUser(+params.get('id'));
     });
   }

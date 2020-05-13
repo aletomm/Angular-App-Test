@@ -1,9 +1,13 @@
+import { environment } from './../../environments/environment';
+import { AuthService } from './auth.service';
 import { User } from './../classes/user';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 @Injectable()
 export class UserService {
+    private APIURL = environment.APIURL;
     users: User[] = [
         {
             "id": 1,
@@ -367,22 +371,25 @@ export class UserService {
         }
 ];
     index: number = this.users.length;
-    constructor() {}
+
+    constructor(private http: HttpClient, private auth: AuthService) {}
+
+    getAuthHeader() {
+        let headers = new HttpHeaders({
+            Authorization : 'Bearer '+ this.auth.getToken()
+        });
+        return headers;
+    }
 
     getUsers(num: number = 15) {
-        //  return fetch("../assets/users.json")
-        //      .then((res) => res.json())
-        //      .then(users => {
-        //         this.users = users; 
-        //         console.log(users);
-        //         return users;
-
-        //      })
-        //      .catch(err => console.log(err));
+        // return this.http.get(this.APIURL, { headers: this.getAuthHeader()} );
         return this.users;
     }
 
     getUser(id: number): User {
+
+        //return this.http.get('APIURL'+'/'+id, { headers: this.getAuthHeader()} );
+        
         // return this.users.find(user=> user.id === id)
         const userSelected: User[] = this.users.filter((user) => {
             return user.id === id;
@@ -391,13 +398,24 @@ export class UserService {
     }
 
     deleteUser(user: User) {
-        let index = this.users.indexOf(user) 
+        let index = this.users.indexOf(user);
         if(index >= 0) {
+            /*
+                const data = {
+                    method: 'DELETE'
+                };
+                return this.http.post(this.APIURL+'/'+user.id, data, { headers: this.getAuthHeader()});
+            */
             this.users.splice(index, 1);
         }
     }
 
     updateUser(user: User) {
+    /*
+        user['_method'] = 'PUT';
+        return this.http.post(this.APIURL+'/'+user.id, user , { headers: this.getAuthHeader()});
+    */ 
+
         const idx = this.users.findIndex((v) => v.id === user.id);
         if(idx !== -1) {
             this.users[idx] = user;
@@ -409,6 +427,10 @@ export class UserService {
     createUser(user: User) {
         user.id = this.index + 1;
         this.index++;
+        /*
+            user['_method'] = 'PUT';
+            return this.http.post(this.APIURL, user, { headers: this.getAuthHeader()});
+        */ 
         this.users.splice(0,0,user);
     }
 }

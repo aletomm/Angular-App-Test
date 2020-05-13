@@ -15,6 +15,8 @@ import { NavComponent } from './nav/nav/nav.component';
 import { UserDataComponent } from './user-data/user-data.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 registerLocaleData(localeIt);
 
@@ -34,7 +36,8 @@ registerLocaleData(localeIt);
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     UserService
